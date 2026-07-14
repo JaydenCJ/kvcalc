@@ -2,7 +2,7 @@
   "name": "kvcalc",
   "version": "0.1.0",
   "description": "Computes KV-cache and weight memory from config.json for any context and batch. Offline, GQA- and MLA-aware, scriptable, unit-tested.",
-  "author": "JaydenCJ",
+  "author": "JaydenCJ <aisingioro.kiyon@gmail.com>",
   "license": "MIT",
   "type": "module",
   "bin": {
