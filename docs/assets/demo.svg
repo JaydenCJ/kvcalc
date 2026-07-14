@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13">
+  <rect width="760" height="440" rx="10" fill="#0d1117"/>
+  <rect width="760" height="34" rx="10" fill="#161b22"/>
+  <circle cx="20" cy="17" r="6" fill="#ff5f57"/>
+  <circle cx="40" cy="17" r="6" fill="#febc2e"/>
+  <circle cx="60" cy="17" r="6" fill="#28c840"/>
+  <text x="380" y="21" fill="#8b949e" text-anchor="middle">kvcalc — will 128k context fit in 24GB?</text>
+
+  <text x="24" y="64" fill="#7ee787">$ kvcalc report config.json --ctx 128k --weights q4_K_M --vram 24GiB</text>
+
+  <text x="24" y="94" fill="#c9d1d9" xml:space="preserve">model     config.json</text>
+  <text x="24" y="114" fill="#c9d1d9" xml:space="preserve">arch      32 layers · <tspan fill="#79c0ff">GQA 32q/8kv</tspan> · head_dim 128 · max ctx 131072</text>
+  <text x="24" y="134" fill="#c9d1d9" xml:space="preserve">params    8.03 B</text>
+  <text x="24" y="154" fill="#8b949e" xml:space="preserve">          embed 525.34 M · attn 1.34 B · mlp 5.64 B · head 525.34 M</text>
+
+  <text x="24" y="184" fill="#c9d1d9" xml:space="preserve">weights   q4_K_M     <tspan fill="#d2a8ff">4.53 GiB</tspan>   8.03 B × 4.85 bpw (~)</text>
+  <text x="24" y="204" fill="#c9d1d9" xml:space="preserve">kv cache  fp16      <tspan fill="#d2a8ff">16.00 GiB</tspan>   ctx 131072 × batch 1 × 128.00 KiB/token</text>
+  <text x="24" y="224" fill="#c9d1d9" xml:space="preserve">total               <tspan fill="#79c0ff">20.53 GiB</tspan></text>
+
+  <text x="24" y="254" fill="#c9d1d9" xml:space="preserve">budget    24.00 GiB → <tspan fill="#28c840">FITS</tspan>   (headroom 3.47 GiB)</text>
+  <text x="24" y="274" fill="#8b949e" xml:space="preserve">exit 0 — precise, offline, GQA/MLA/MoE/SWA-aware</text>
+
+  <text x="24" y="306" fill="#7ee787">$ kvcalc fit config.json --vram 24GiB --weights q8_0 --batch 4 --overhead 1GiB</text>
+  <text x="24" y="336" fill="#c9d1d9" xml:space="preserve">weights   q8_0       7.95 GiB   ·   kv budget   15.05 GiB</text>
+  <text x="24" y="356" fill="#c9d1d9" xml:space="preserve">max ctx   <tspan fill="#79c0ff">30830 tokens</tspan> at batch 4, kv 15.05 GiB</text>
+  <text x="24" y="376" fill="#c9d1d9" xml:space="preserve">model max 131072 (128k) → full model context <tspan fill="#f85149">DOES NOT FIT</tspan></text>
+
+  <text x="24" y="408" fill="#8b949e" xml:space="preserve">MLA models cache the latent, not per-head K/V: 60 layers → 67.50 KiB/token</text>
+  <text x="24" y="426" fill="#8b949e" xml:space="preserve">sliding-window layers cap at min(ctx, window) — kvcalc knows which is which</text>
+</svg>

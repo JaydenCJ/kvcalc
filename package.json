@@ -1,0 +1,53 @@
+{
+  "name": "kvcalc",
+  "version": "0.1.0",
+  "description": "Computes KV-cache and weight memory from config.json for any context and batch. Offline, GQA- and MLA-aware, scriptable, unit-tested.",
+  "author": "JaydenCJ",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "kvcalc": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "examples",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test \"tests/*.test.mjs\"",
+    "smoke": "bash scripts/smoke.sh"
+  },
+  "keywords": [
+    "kv-cache",
+    "vram",
+    "llm",
+    "gqa",
+    "mla",
+    "memory-estimation",
+    "cli"
+  ],
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaydenCJ/kvcalc.git"
+  },
+  "homepage": "https://github.com/JaydenCJ/kvcalc#readme",
+  "bugs": {
+    "url": "https://github.com/JaydenCJ/kvcalc/issues"
+  }
+}
